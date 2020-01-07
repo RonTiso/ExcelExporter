@@ -270,7 +270,8 @@ public class DataOQL
 			// Build constraint statement
 			if (constraint.getAttributeType() == AttributeType.Date)
 			{
-				// DATEDIFF (DAY, Planned_Submission_Date,
+				// DATE
+				(DAY, Planned_Submission_Date,
 				// '[%CurrentDateTime%]') <= 14
 				// min is toekomst, plus is vroeger.
 				this.WHERE.append("DATEDIFF(").append("DAY,").append(obj.getAlias()).append("."
@@ -298,6 +299,12 @@ public class DataOQL
 						break;
 					case SmallerEqual:
 						this.WHERE.append(" <= ").append(compare);
+						break;
+					case NotEmpty:
+						this.WHERE.append(" != NULL");
+						break;
+					case _empty:
+						this.WHERE.append(" = NULL");
 						break;
 					default:
 						break;
